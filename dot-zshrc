@@ -5,6 +5,9 @@ else
     source /usr/share/zsh/scripts/zplug/init.zsh
 fi
 
+autoload -Uz compinit
+compinit
+
 # plugins
 zplug "junegunn/fzf", as:command, from:github, rename-to:fzf
 zplug "zsh-users/zsh-autosuggestions", defer:1
@@ -46,7 +49,11 @@ alias ls="ls --color=auto"
 # completions
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' menu select 
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:options' auto-select yes
+zstyle ':completion:*:options' use-cursor always
+
 if (( $+commands[kubectl] )); then
     source <(kubectl completion zsh)
 fi
@@ -57,6 +64,10 @@ fi
 
 if (( $+commands[kubectx])); then
     source <(kubectl completion zsh)
+fi
+
+if (( $+commands[gh] )); then
+    source <(gh completion -s zsh)
 fi
 
 # Home brew if macOS
