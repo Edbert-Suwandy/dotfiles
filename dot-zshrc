@@ -1,0 +1,43 @@
+source /usr/share/zsh/scripts/zplug/init.zsh
+
+# plugins
+zplug "junegunn/fzf", as:command, from:github, rename-to:fzf
+zplug "zsh-users/zsh-autosuggestions", defer:1
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "Aloxaf/fzf-tab", defer:1
+# only if kubectl is installed
+zplug "ahmetb/kubectx", as:command, from:github, if:'(( $+commands[kubectl] ))'
+
+
+export TERM='xterm-256color'
+if ! zplug check; then
+    zplug install
+fi
+
+# History Settings
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# source plugins and add commands to the PATH
+zplug load
+
+# aliases
+alias vim="nvim"
+alias tf="terraform"
+alias k="kubectl"
+alias cd="z"
+
+# load 
+source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
