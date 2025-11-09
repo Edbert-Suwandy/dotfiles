@@ -7,4 +7,4 @@ Requirements
 - [zsh](https://www.zsh.org/)
 - [starship](https://starship.rs)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
-
+- [delta] (https://github.com/dandavison/delta)

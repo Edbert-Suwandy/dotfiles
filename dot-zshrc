@@ -49,10 +49,19 @@ alias ls="ls --color=auto"
 # completions
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu select 
-zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*:options' auto-select yes
 zstyle ':completion:*:options' use-cursor always
+zstyle ':fzf-tab:*' fzf-command
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -l --color=always $realpath'
+zstyle ':completion:*' menu select
+zstyle ':completion:*:descriptions' format ''
+zstyle ':completion:*' group-name ''
+
+export FZF_DEFAULT_OPTS='
+  --border=sharp            # Keep a sharp border for a clean look
+  --info=inline             # Keep the info line (match count, etc.)
+  --color=bg+:#2C3E50,border:#7F8C8D # Keep custom colors (optional)
+'
 
 if (( $+commands[kubectl] )); then
     source <(kubectl completion zsh)
