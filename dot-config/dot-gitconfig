@@ -1,7 +1,3 @@
-[user]
-	email = edbert.suwandy@everquote.com
-	name = Edbert-S
-	signingkey = 2C0EAE61F6286C05
 [commit]
 	gpgsign = true
 [push]
