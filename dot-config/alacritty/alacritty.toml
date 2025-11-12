@@ -1,0 +1,14 @@
+general.import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[[keyboard.bindings]]
+key = "T"
+mods = "Control"
+action = "CreateNewWindow"
+
+[[keyboard.bindings]]
+key = "W"
+mods = "Control"
+action = "Quit"
+
